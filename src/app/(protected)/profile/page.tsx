@@ -1,5 +1,7 @@
 import { auth } from '@/auth';
 import { Page } from '@/components/PageLayout';
+import { UserInfo } from '@/components/UserInfo';
+import { VoiceRecorder } from '@/components/VoiceRecorder';
 import { Marble, TopBar } from '@worldcoin/mini-apps-ui-kit-react';
 
 export default async function Profile() {
@@ -21,31 +23,25 @@ export default async function Profile() {
         />
       </Page.Header>
       <Page.Main className="flex flex-col items-center justify-start gap-4 mb-16">
-        <div className="w-full max-w-md p-4">
-          <div className="flex flex-col items-center gap-4 mb-6">
-            <Marble
-              src={session?.user.profilePictureUrl}
-              className="w-24 h-24"
-            />
-            <h2 className="text-2xl font-semibold capitalize">
-              {session?.user.username}
-            </h2>
-          </div>
-          <div className="bg-gray-50 rounded-lg p-4 space-y-4">
-            <div>
-              <p className="text-sm text-gray-600">Username</p>
-              <p className="text-sm font-semibold capitalize">
-                {session?.user.username || 'Not available'}
-              </p>
-            </div>
-            <div>
-              <p className="text-sm text-gray-600">Wallet Address</p>
-              <p className="text-sm font-mono break-all">
-                {session?.user.walletAddress || 'Not available'}
-              </p>
+        <UserInfo />
+        <div className="w-full">
+          <div className="mb-4 p-4 bg-gray-50 rounded-xl">
+            <h3 className="text-lg font-semibold mb-2">User Information</h3>
+            <div className="space-y-2 text-sm">
+              <div>
+                <span className="font-medium text-gray-600">Username: </span>
+                <span className="capitalize">{session?.user.username || 'Not set'}</span>
+              </div>
+              <div>
+                <span className="font-medium text-gray-600">Wallet Address: </span>
+                <span className="font-mono text-xs break-all">
+                  {session?.user.walletAddress || 'Not connected'}
+                </span>
+              </div>
             </div>
           </div>
         </div>
+        <VoiceRecorder />
       </Page.Main>
     </>
   );
