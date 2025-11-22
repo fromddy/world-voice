@@ -67,8 +67,8 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         return {
           id: finalPayload.address,
-          walletAddress: finalPayload.address,
           ...userInfo,
+          walletAddress: finalPayload.address,
         };
       },
     }),
