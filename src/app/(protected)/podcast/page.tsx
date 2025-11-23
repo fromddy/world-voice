@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
+import { Pay } from '@/components/Pay'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 // --- Type Definitions and Data remain the same ---
@@ -305,7 +306,7 @@ function PodcastEpisodeItem({ episode, index }: { episode: PodcastEpisode; index
         ? 'border-white/20 bg-cyan-600 text-cyan-200'
         : 'border-gray-200 bg-gray-50 text-gray-400'
     const socialButtonClasses = isDark
-        ? 'border-white/25 bg-white/10 text-cyan-50 hover:border-white hover:text-white hover:bg-white/20'
+        ? 'border-white/25 bg-white/10 text-white hover:border-white hover:bg-white/20'
         : 'border-gray-300 bg-white text-gray-700 hover:border-gray-900 hover:text-gray-900'
     const highlightContainerClasses = isDark
         ? 'group rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-sm transition hover:border-white/40'
@@ -417,6 +418,11 @@ function PodcastEpisodeItem({ episode, index }: { episode: PodcastEpisode; index
                         ))}
                     </div>
                 </details>
+
+                {/* Pay Button */}
+                <div className="mt-2">
+                    <Pay />
+                </div>
             </div>
         </article>
     )
@@ -437,15 +443,15 @@ function PodcastEpisodeItem({ episode, index }: { episode: PodcastEpisode; index
 // }
 
 
+import { Page } from '@/components/PageLayout'
+
 export default function Podcast() {
     return (
-        <section className="relative h-full min-h-full w-full">
-            <div className="relative h-full min-h-full overflow-y-auto no-scrollbar" style={{ WebkitOverflowScrolling: 'touch', scrollBehavior: 'smooth' }}>
-                {sortedEpisodes.map((episode, index) => (
-                    <PodcastEpisodeItem key={episode.id} episode={episode} index={index} />
-                ))}
-            </div>
-        </section>
+        <Page.Main className="flex flex-col gap-0 p-0">
+            {sortedEpisodes.map((episode, index) => (
+                <PodcastEpisodeItem key={episode.id} episode={episode} index={index} />
+            ))}
+        </Page.Main>
     )
 }
 

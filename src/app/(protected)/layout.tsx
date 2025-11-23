@@ -1,5 +1,5 @@
 import { auth } from '@/auth';
-// import { Navigation } from '@/components/Navigation';
+import { Navigation } from '@/components/Navigation';
 import { Page } from '@/components/PageLayout';
 
 export default async function TabsLayout({
@@ -17,10 +17,12 @@ export default async function TabsLayout({
 
   return (
     <Page>
-      {children}
-      {/* <Page.Footer className="px-0 fixed bottom-0 w-full bg-white">
+      <div className="flex-1 flex flex-col pb-24">
+        {children}
+      </div>
+      <Page.Footer className="px-0 fixed bottom-0 w-full bg-white border-t border-gray-100 z-50">
         <Navigation />
-      </Page.Footer> */}
+      </Page.Footer>
     </Page>
   );
 }
